@@ -1,5 +1,7 @@
 body {
     background-color: #232323;
+    margin: 0;
+    font-family: "Avenir";
 }
 
 .square {
@@ -7,16 +9,27 @@ body {
     padding-bottom: 30%;
     float: left;
     margin: 1.66%;
+    border-radius: 15%;
+    transition: all 1.0s;
+    -webkit-transition: background 1.0s;
+    -moz-transition: background 1.0s;
 }
 
 .container {
     max-width: 600px;
-    margin: 0 auto;
+    margin: 20px auto;
+
 }
 
 h1 {
     color: white;
     text-transform: uppercase;
+    text-align: center;
+    background: steelblue;
+    margin: 0;
+    font-weight: normal;
+    line-height: 1.1;
+    padding: 20px 0;
 }
 
 .buttonBar {
@@ -26,5 +39,34 @@ h1 {
 }
 
 .selected {
-    background-color: blue;
+    background-color: steelblue;
+    color: white;
+}
+
+.colorDisplay {
+    font-size: 200%;
+}
+
+button {
+    border: none;
+    background: none;
+    height: 100%;
+    font-weight: 700;
+    color: steelblue;
+    letter-spacing: 1px;
+    font-size: inherit;
+    transition: all 0.3s;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+}
+
+button:hover {
+    color: white;
+    background: steelblue;
+
+}
+
+.tryAgain {
+    display: inline-block;
+    width: 20%;
 }

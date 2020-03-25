@@ -35,33 +35,41 @@ function checkIfWinner() {
     if(this.style.backgroundColor === pickedColor) {
         tryAgainMessage.textContent = "Correct";
         changeColors(pickedColor);
-        newButton.textContent = "Play Again?";
+        h1.style.backgroundColor = pickedColor;
+        newButton.textContent = "PLAY AGAIN?";
     }
     else {
         this.style.backgroundColor = "#232323";
-        tryAgainMessage.textContent = "Try again";
-        newButton.textContent = "New Colors";
+        tryAgainMessage.textContent = "TRY AGAIN";
+        newButton.textContent = "NEW COLORS";
     }
 }
 
 //changes all square colors and the banner at the top of the page to match the given color
 function changeColors(color) {
-    h1.style.backgroundColor = color;
-    for(i = 0; i < squareNumber; i++) {
-        squares[i].style.backgroundColor = color;
+    for(i = 0; i < squares.length; i++) {
+        if(colors[i]) {
+            squares[i].style.backgroundColor = color;
+            squares[i].style.display = "block";
+
+        }
+        else {
+            squares[i].style.display = "none";
+        }
     }
 }
 
 
 function newGame() {
     tryAgainMessage.textContent = "";
-    newButton.textContent = "New colors";
+    newButton.textContent = "NEW COLORS";
     colors = [];
     pickAllColors(squareNumber);
     pickedColor = pickWinningColor();
     colorDisplay.textContent = pickedColor;
+    h1.style.backgroundColor = "steelblue";
     changeColors("#232323");
-    for(i = 0; i < squareNumber; i++) {
+    for(i = 0; i < squares.length; i++) {
         squares[i].style.backgroundColor = colors[i];
         squares[i].addEventListener("click", checkIfWinner);
     }
@@ -69,7 +77,6 @@ function newGame() {
 }
 
 easy.addEventListener("click", function() {
-    changeColors("#232323");
     squareNumber = 3;
     easy.classList.add("selected");
     hard.classList.remove("selected");
