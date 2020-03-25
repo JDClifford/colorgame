@@ -1,16 +1,19 @@
-let colors = []
+let colors = [];
 let squares = document.querySelectorAll(".square");
-let tryAgainMessage = document.querySelector(".tryAgain")
+let tryAgainMessage = document.querySelector(".tryAgain");
 let h1 = document.querySelector("h1");
-pickAllColors(6)
-let pickedColor = pickWinningColor()
 let newButton = document.querySelector(".new");
 let colorDisplay = document.querySelector(".colorDisplay");
-colorDisplay.textContent = pickedColor;
+let easy = document.querySelector("#easy");
+let hard = document.querySelector("#hard");
+let isEasy = false;
+let squareNumber = 6;
+
+
 
 //assesses whether a user has selected the correct color and gives feedback or ends the game
 function gamePlay() {
-    for(i = 0; i < squares.length; i++) {
+    for(i = 0; i < squareNumber; i++) {
         squares[i].style.backgroundColor = colors[i];
         squares[i].addEventListener("click", function() {
             if(this.style.backgroundColor === pickedColor) {
@@ -54,16 +57,44 @@ function randomRGB() {
     return Math.floor(Math.random() * 256);
 }
 
-//listens for clicks on the button allowing users to start a new game or restart
-newButton.addEventListener("click", function() {
+
+
+function freshGame() {
     tryAgainMessage.textContent = "";
     newButton.textContent = "New colors";
     colors = []
-    pickAllColors(6);
+    if(isEasy === true) {
+        pickAllColors(3);
+    }
+    else {
+        pickAllColors(6);
+    }
     pickedColor = pickWinningColor();
     colorDisplay.textContent = pickedColor;
     changeColors("#232323");
     gamePlay();
+
+}
+
+
+pickAllColors(6)
+let pickedColor = pickWinningColor();
+colorDisplay.textContent = pickedColor;
+gamePlay();
+
+easy.addEventListener("click", function() {
+    isEasy = true;
+    squareNumber = 3;
+    freshGame();
 })
 
-gamePlay();
+hard.addEventListener("click", function() {
+    isEasy = false;
+    squareNumber = 6;
+    freshGame();
+})
+
+//listens for clicks on the button allowing users to start a new game or restart
+newButton.addEventListener("click", function() {
+    freshGame();
+})
