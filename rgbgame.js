@@ -1,4 +1,6 @@
 let colors = [];
+let squareNumber = 6;
+let pickedColor = "";
 let squares = document.querySelectorAll(".square");
 let tryAgainMessage = document.querySelector(".tryAgain");
 let h1 = document.querySelector("h1");
@@ -6,9 +8,6 @@ let newButton = document.querySelector(".new");
 let colorDisplay = document.querySelector(".colorDisplay");
 let easy = document.querySelector("#easy");
 let hard = document.querySelector("#hard");
-let squareNumber = 6;
-let pickedColor = "";
-
 
 
 //Chooses 6 random RGB colors and builds them into a string
@@ -59,7 +58,6 @@ function changeColors(color) {
     }
 }
 
-
 function newGame() {
     tryAgainMessage.textContent = "";
     newButton.textContent = "NEW COLORS";
@@ -73,7 +71,6 @@ function newGame() {
         squares[i].style.backgroundColor = colors[i];
         squares[i].addEventListener("click", checkIfWinner);
     }
-
 }
 
 easy.addEventListener("click", function() {
